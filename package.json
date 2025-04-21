@@ -76,5 +76,10 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
-  }
+  },
+  "homepage": "https://brosq6168.github.io/Dev-Portfolio",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
 }
