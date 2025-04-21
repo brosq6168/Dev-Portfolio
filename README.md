@@ -96,6 +96,9 @@ devportfolio/
 └── ...                   # Config files
 \`\`\`
 
+
+
+
 ## 🎨 Customization
 
 ### Changing Colors
@@ -176,4 +179,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-Made with ❤️ by [Maaskom](https://yourwebsite.com)
+Made with ❤️ by [brosq6168](https://yourwebsite.com)
