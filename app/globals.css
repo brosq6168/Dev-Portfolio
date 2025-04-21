@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 192 88% 68%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 280 70% 75%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 75%;
+
+    --accent: 192 88% 68%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 192 88% 68%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+
+    /* Improve scrolling performance */
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Improve content visibility for better performance */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
+
+  .font-space {
+    font-family: var(--font-space-grotesk), sans-serif;
+  }
+
+  .font-geist {
+    font-family: var(--font-geist-sans), sans-serif;
+  }
+
+  .font-geist-mono {
+    font-family: var(--font-geist-mono), monospace;
+  }
+
+  .glassmorphism {
+    @apply bg-background/30 backdrop-blur-xl border border-white/10 shadow-lg;
+  }
+
+  /* Improved text styles for better accessibility */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground;
+  }
+
+  /* Neon effects only for decorative elements, not for text */
+  .neon-glow {
+    @apply text-foreground;
+  }
+
+  .neon-glow-secondary {
+    @apply text-foreground;
+  }
+
+  /* Apply neon effects to buttons and decorative elements instead */
+  .neon-border {
+    @apply border border-primary/50;
+    box-shadow: 0 0 5px theme("colors.primary.DEFAULT");
+  }
+
+  .neon-border-secondary {
+    @apply border border-secondary/50;
+    box-shadow: 0 0 5px theme("colors.secondary.DEFAULT");
+  }
+}
+
+@layer components {
+  /* Luminous button styles */
+  .btn-luminous {
+    @apply bg-primary/20 hover:bg-primary/30 text-primary border border-primary/50;
+    box-shadow: 0 0 5px theme("colors.primary.DEFAULT");
+  }
+
+  .btn-luminous:hover {
+    box-shadow: 0 0 10px theme("colors.primary.DEFAULT"), 0 0 15px theme("colors.primary.DEFAULT");
+    @apply transition-all duration-300;
+  }
+
+  .btn-luminous-secondary {
+    @apply bg-secondary/20 hover:bg-secondary/30 text-secondary border border-secondary/50;
+    box-shadow: 0 0 5px theme("colors.secondary.DEFAULT");
+  }
+
+  .btn-luminous-secondary:hover {
+    box-shadow: 0 0 10px theme("colors.secondary.DEFAULT"), 0 0 15px theme("colors.secondary.DEFAULT");
+    @apply transition-all duration-300;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Progressive enhancement - ensure site works without JavaScript */
+  .no-js .requires-js {
+    display: none !important;
+  }
+
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px theme("colors.primary.DEFAULT"));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px theme("colors.primary.DEFAULT"));
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Particle background */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Accessibility helper classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip to content link for keyboard users */
+.skip-to-content {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 
+         focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:outline-none 
+         focus:ring-2 focus:ring-primary;
+}
+
+/* Add a class to detect JavaScript support */
+.js-enabled {
+  display: block;
+}
+
+/* Hide elements that require JavaScript when JS is disabled */
+.no-js .js-enabled {
+  display: none;
+}
+
+/* Custom cursor styles */
+.custom-cursor {
+  cursor: none !important;
+}
+
+/* Ensure cursor is visible on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor {
+    cursor: auto !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .custom-cursor,
+  .scroll-animation {
+    display: none !important;
+  }
+}
